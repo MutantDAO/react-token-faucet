@@ -2,8 +2,8 @@ import Alert from 'react-bootstrap/Alert'
 
 const Message = ({ balance }) => {
 	return (
-		<div>
-			<Alert variant="info"> balance : {balance}</Alert>
+		<div style={{marginBottom: "24px", fontWeight:700, fontSize: "1.4rem"}}>
+			Balance : {`${balance} $FISH`}
 		</div>
 	)
 }

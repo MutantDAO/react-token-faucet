@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-app.use('/faucet', (req, res, next) => {
-	console.info(`req path`, req.path);
-	next();
-})
+// app.use('/', (req, res, next) => {
+// 	// console.info(`req path: "${req.path}"`);
+// 	next();
+// });
 
 app.use('/faucet', express.static(path.join(__dirname, 'build')));
 

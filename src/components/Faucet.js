@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ethers } from 'ethers'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-
-import Message from './Message'
+import Message from './Message';
+import './Faucet.css';
 
 const tokenAddress = "0xbCc10bC2a24b07b598D7794FecFDb42B48a5c435"
 
+
+// const Faucet = (props) => {
 const Faucet = (props) => {
 	
-	const [balance, setBalance] = useState()
-	const [showBalance, setShowBalance] = useState(false)
+	const [balance, setBalance] = useState();
+	const [showBalance, setShowBalance] = useState(false);
 	
+	useEffect(() => {
+		getBalance();
+	});
 	
 	async function getBalance() {
 		if (typeof window.ethereum !== 'undefined') {
@@ -20,7 +25,7 @@ const Faucet = (props) => {
 			const contract = new ethers.Contract(tokenAddress, props.tokenContract.abi, provider)
 			const balance = await contract.balanceOf(account);
 			console.log("Balance: ", balance.toString());
-			setBalance(balance.toString());
+			setBalance(ethers.utils.formatEther(balance.toString()));
 			setShowBalance(true);
 		}
 	}
@@ -39,15 +44,25 @@ const Faucet = (props) => {
 		}
 	}
 	return (
-		<div>
-			<Card style={{background: "rgba(227, 104, 222, 0.71)"}}>
+		<div style={{maxWidth:'600px'}}>
+			<Card style={{background: "rgb(209, 213, 219);", padding: '30px', marginBottom: "20px"}}>
 				<Card.Body>
-					<Card.Subtitle>recieve faucet ERC20 to your wallet
-					</Card.Subtitle><br></br>
+					<Card.Title style={{fontWeight: 600,fontSize:'1.5em'}}>Check <b>(Testnet)</b> $FISH balance</Card.Title>
+					<Card.Subtitle style={{margin: "30px 0px", lineHeight: 1.5}}>Sup Mutant Dev!  Thanks for taking time to develop for the Mutant Community.  Click below to check your <b>$FISH</b> for development on Ropsten Testnet.</Card.Subtitle>
 					<div className="d-grid gap-2">
-						<Button onClick={faucet}>get faucet token!</Button>
-						<Button onClick={getBalance} variant="warning">check my balance</Button>
-						{ showBalance ? <Message balance={balance}/> : null }
+						<div style={{marginTop:"15px"}}>
+							{ showBalance ? <Message balance={balance}/> : null }
+						</div>
+						<Button onClick={getBalance} variant="warning faucet-btn">Check $FISH Balance</Button>
+					</div>
+				</Card.Body>
+			</Card>
+			<Card style={{background: "rgb(209, 213, 219);", padding: '30px'}}>
+				<Card.Body>
+					<Card.Title style={{fontWeight: 600,fontSize:'1.5em'}}>Make it rain <b>(Testnet)</b> $FISH</Card.Title>
+					<Card.Subtitle style={{margin: "30px 0px", lineHeight: 1.5}}>Click below to receive your <b>$FISH</b> for development on <b>Ropsten Testnet</b>.</Card.Subtitle>
+					<div className="d-grid gap-2" style={{marginBottom:"15px"}}>
+						<Button onClick={faucet} variant={"primary faucet-btn"}>Make it 💦  $FISH!</Button>
 					</div>
 				</Card.Body>
 			</Card>
