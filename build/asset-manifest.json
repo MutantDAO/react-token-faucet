@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/faucet/static/css/main.1f85704f.chunk.css",
+    "main.js": "/faucet/static/js/main.f75bf022.chunk.js",
+    "main.js.map": "/faucet/static/js/main.f75bf022.chunk.js.map",
+    "runtime-main.js": "/faucet/static/js/runtime-main.79ea78f3.js",
+    "runtime-main.js.map": "/faucet/static/js/runtime-main.79ea78f3.js.map",
+    "static/css/2.1dd1e755.chunk.css": "/faucet/static/css/2.1dd1e755.chunk.css",
+    "static/js/2.2331dfb8.chunk.js": "/faucet/static/js/2.2331dfb8.chunk.js",
+    "static/js/2.2331dfb8.chunk.js.map": "/faucet/static/js/2.2331dfb8.chunk.js.map",
+    "static/js/3.16169bb1.chunk.js": "/faucet/static/js/3.16169bb1.chunk.js",
+    "static/js/3.16169bb1.chunk.js.map": "/faucet/static/js/3.16169bb1.chunk.js.map",
+    "index.html": "/faucet/index.html",
+    "static/css/2.1dd1e755.chunk.css.map": "/faucet/static/css/2.1dd1e755.chunk.css.map",
+    "static/css/main.1f85704f.chunk.css.map": "/faucet/static/css/main.1f85704f.chunk.css.map",
+    "static/js/2.2331dfb8.chunk.js.LICENSE.txt": "/faucet/static/js/2.2331dfb8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.79ea78f3.js",
+    "static/css/2.1dd1e755.chunk.css",
+    "static/js/2.2331dfb8.chunk.js",
+    "static/css/main.1f85704f.chunk.css",
+    "static/js/main.f75bf022.chunk.js"
+  ]
+}

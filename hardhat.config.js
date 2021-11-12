@@ -1,6 +1,8 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
+
 require('dotenv').config()
-const { API_URL, PRIVATE_KEY } = process.env;
+const { API_URL, RINKEBY_API_URL, PRIVATE_KEY } = process.env;
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async () => {
@@ -21,7 +23,6 @@ module.exports = {
   paths: {
     artifacts: './src/artifacts',
   },
-  
   networks: {
     hardhat: {
       chainId: 1337
@@ -29,7 +30,16 @@ module.exports = {
     ropsten: {
       url: API_URL,
       accounts: [`0x${PRIVATE_KEY}`]
+    },
+    rinkeby:{
+      url: RINKEBY_API_URL,
+      accounts: [`0x${PRIVATE_KEY}`]
     }
+  },
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: process.env.ETH_SCAN_API_KEY
   },
   solidity: "0.8.3"
 };

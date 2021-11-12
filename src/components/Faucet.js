@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Message from './Message';
 import './Faucet.css';
 
-const tokenAddress = "0xbCc10bC2a24b07b598D7794FecFDb42B48a5c435"
+// const tokenAddress = "0xbCc10bC2a24b07b598D7794FecFDb42B48a5c435"
 
 
 // const Faucet = (props) => {
@@ -13,6 +13,7 @@ const Faucet = (props) => {
 	
 	const [balance, setBalance] = useState();
 	const [showBalance, setShowBalance] = useState(false);
+	const {tokenAddress, network } = props;
 	
 	useEffect(() => {
 		getBalance();
@@ -22,7 +23,9 @@ const Faucet = (props) => {
 		if (typeof window.ethereum !== 'undefined') {
 			const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
 			const provider = new ethers.providers.Web3Provider(window.ethereum);
+			console.info(`provider`, provider);
 			const contract = new ethers.Contract(tokenAddress, props.tokenContract.abi, provider)
+			console.info(`contract`, contract);
 			const balance = await contract.balanceOf(account);
 			console.log("Balance: ", balance.toString());
 			setBalance(ethers.utils.formatEther(balance.toString()));
@@ -43,11 +46,12 @@ const Faucet = (props) => {
 			contract.faucet(account[0], amount);//100 tokens
 		}
 	}
+	console.info(`network name`, network);
 	return (
 		<div style={{maxWidth:'600px'}}>
-			<Card style={{background: "rgb(209, 213, 219);", padding: '30px', marginBottom: "20px"}}>
+			<Card style={{background: "rgb(209, 213, 219)", padding: '30px', marginBottom: "20px"}}>
 				<Card.Body>
-					<Card.Title style={{fontWeight: 600,fontSize:'1.5em'}}>Check <b>(Testnet)</b> $FISH balance</Card.Title>
+					<Card.Title style={{fontWeight: 600,fontSize:'1.5em'}}><b>({network} Testnet)</b> $FISH balance</Card.Title>
 					<Card.Subtitle style={{margin: "30px 0px", lineHeight: 1.5}}>Sup Mutant Dev!  Thanks for taking time to develop for the Mutant Community.  Click below to check your <b>$FISH</b> for development on Ropsten Testnet.</Card.Subtitle>
 					<div className="d-grid gap-2">
 						<div style={{marginTop:"15px"}}>
@@ -57,7 +61,7 @@ const Faucet = (props) => {
 					</div>
 				</Card.Body>
 			</Card>
-			<Card style={{background: "rgb(209, 213, 219);", padding: '30px'}}>
+			<Card style={{background: "rgb(209, 213, 219)", padding: '30px'}}>
 				<Card.Body>
 					<Card.Title style={{fontWeight: 600,fontSize:'1.5em'}}>Make it rain <b>(Testnet)</b> $FISH</Card.Title>
 					<Card.Subtitle style={{margin: "30px 0px", lineHeight: 1.5}}>Click below to receive your <b>$FISH</b> for development on <b>Ropsten Testnet</b>.</Card.Subtitle>
